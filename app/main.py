@@ -10,7 +10,7 @@ def main():
     sys.stdout.flush()
 
     # Wait for user input
-    while input()!='':
+    while True:
         command = input()
         print(f"{command}: command not found")
 
