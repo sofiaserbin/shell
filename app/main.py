@@ -11,8 +11,9 @@ def main():
 
     # Wait for user input
     while True:
-        command = input()
-        print(f"{command}: command not found")
+        user_input=input()
+        if not user_input.strip():
+            print(f"{user_input}: command not found")
 
 
 if __name__ == "__main__":
