@@ -18,10 +18,10 @@ def main():
         if "echo" in user_input:
             print(user_input[5:])
         if user_input[0:3]=="type":
-            if user_input[4:] in builtins:
-                print(f"{user_input[4:]} is a shell builtin")
+            if user_input[5:] in builtins:
+                print(f"{user_input[5:]} is a shell builtin")
             else:
-                print(f"{user_input[4:]} not found")
+                print(f"{user_input[5:]} not found")
         else:
             print(f"{user_input}: command not found")
         sys.stdout.write("$ ")
