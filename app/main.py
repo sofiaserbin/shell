@@ -12,10 +12,9 @@ def main():
     # Wait for user input
     while True:
         user_input=input()
-        if not user_input.strip():
-            print(f"{user_input}: command not found")
-            sys.stdout.write("$ ")
-            sys.stdout.flush()
+        print(f"{user_input}: command not found")
+        sys.stdout.write("$ ")
+        sys.stdout.flush()
 
 
 if __name__ == "__main__":
