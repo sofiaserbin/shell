@@ -1,4 +1,5 @@
 import sys
+import subprocess
 import os
 
 def main():
@@ -30,15 +31,19 @@ def main():
                         break
                 if not found:
                     print(f"{command_name}: not found")
-        cmd = user_input.strip(" ")
-        found = False
-        for path in paths:
-            executable_path = os.path.join(path, command_name)
-                    if os.path.isfile(executable_path):
-                        os.command(command_name)
-                        found = True
         else:
-            print(f"{user_input}: command not found")
+            cmd_parts = user_input.split()
+            cmd = cmd_parts[0]
+            args = cmd_parts[1:]
+            found = False
+            for path in paths:
+                executable_path = os.path.join(path, cmd)
+                if os.path.isfile(executable_path) and os.access(executable_path, os.X_OK):
+                    subprocess.run([executable_path] + args)
+                    found = True
+                    break
+            if not found:
+                print(f"{user_input}: command not found")
         
         sys.stdout.write("$ ")
         sys.stdout.flush()
