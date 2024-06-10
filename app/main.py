@@ -29,8 +29,8 @@ def main():
                 print(f"{user_input[5:]} is a shell builtin")
             else:
                 print(f"{user_input[5:]} not found")
-        else:
-            print(f"{user_input}: command not found")
+        # else:
+        #     print(f"{user_input}: command not found")
         sys.stdout.write("$ ")
         sys.stdout.flush()
 
