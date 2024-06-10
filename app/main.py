@@ -29,7 +29,7 @@ def main():
                     sys.stdout.write("$ ")
                     sys.stdout.flush()
                     break
-            if found = True:
+            if found == True:
                 continue
             elif user_input[5:] in builtins:
                 print(f"{user_input[5:]} is a shell builtin")
