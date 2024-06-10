@@ -21,7 +21,7 @@ def main():
         elif user_input.startswith("echo"):
             print(user_input[5:])
         elif user_input.startswith("type"):
-            found = false
+            found = False
             for path in paths:
                 if os.path.isfile(f"{path}/{user_input[5:]}"):
                     print(f"{user_input[5:]} is {path}/{user_input[5:]}")
