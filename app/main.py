@@ -1,43 +1,39 @@
 import sys
 import os
 
-
 def main():
     builtins = ["echo", "type", "exit"]
     PATH = os.environ.get("PATH")
-    paths = PATH.split(":")
-    # You can use print statements as follows for debugging, they'll be visible when running tests.
-    # print("Logs from your program will appear here!")
+    paths = PATH.split(":") if PATH else []
 
-    # Uncomment this block to pass the first stage
     sys.stdout.write("$ ")
     sys.stdout.flush()
 
-    # Wait for user input
     while True:
-        user_input=input()
-        if user_input=="exit 0":
+        user_input = input().strip()
+        if user_input == "exit 0":
             break
-        elif user_input.startswith("echo"):
+        elif user_input.startswith("echo "):
             print(user_input[5:])
-        elif user_input.startswith("type"):
-            found = False
-            if user_input[5:] in builtins:
-                print(f"{user_input[5:]} is a shell builtin")
-                found = True
-            elif found == False:
+        elif user_input.startswith("type "):
+            command_name = user_input[5:].strip()
+            if command_name in builtins:
+                print(f"{command_name} is a shell builtin")
+            else:
+                found = False
                 for path in paths:
-                    if os.path.isfile(f"{path}/{user_input[5:]}"):
-                        print(f"{user_input[5:]} is {path}/{user_input[5:]}")
+                    executable_path = os.path.join(path, command_name)
+                    if os.path.isfile(executable_path) and os.access(executable_path, os.X_OK):
+                        print(f"{command_name} is {executable_path}")
                         found = True
                         break
-            else:
-                print(f"{user_input[5:]} not found")
+                if not found:
+                    print(f"{command_name}: not found")
         else:
             print(f"{user_input}: command not found")
+        
         sys.stdout.write("$ ")
         sys.stdout.flush()
-
 
 if __name__ == "__main__":
     main()
