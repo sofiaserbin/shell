@@ -23,12 +23,20 @@ def main():
                 found = False
                 for path in paths:
                     executable_path = os.path.join(path, command_name)
-                    if os.path.isfile(executable_path) and os.access(executable_path, os.X_OK):
+                    if os.path.isfile(executable_path):
                         print(f"{command_name} is {executable_path}")
+                        # os.command(command_name)
                         found = True
                         break
                 if not found:
                     print(f"{command_name}: not found")
+        cmd = user_input.strip(" ")
+        found = False
+        for path in paths:
+            executable_path = os.path.join(path, command_name)
+                    if os.path.isfile(executable_path):
+                        os.command(command_name)
+                        found = True
         else:
             print(f"{user_input}: command not found")
         
