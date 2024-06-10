@@ -17,7 +17,7 @@ def main():
             break
         if "echo" in user_input:
             print(user_input[5:])
-        if user_input[0:3]=="type":
+        if user_input.startswith("type"):
             if user_input[5:] in builtins:
                 print(f"{user_input[5:]} is a shell builtin")
             else:
