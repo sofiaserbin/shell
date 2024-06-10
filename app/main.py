@@ -14,6 +14,8 @@ def main():
         user_input=input()
         if user_input=="exit 0":
             break
+        if "echo" in user_input:
+            print(user_input[6:])
         print(f"{user_input}: command not found")
         sys.stdout.write("$ ")
         sys.stdout.flush()
