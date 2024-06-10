@@ -21,19 +21,22 @@ def main():
         elif user_input.startswith("echo"):
             print(user_input[5:])
         elif user_input.startswith("type"):
+            found = false
             for path in paths:
                 if os.path.isfile(f"{path}/{user_input[5:]}"):
                     print(f"{user_input[5:]} is {path}/{user_input[5:]}")
+                    found = true
                     sys.stdout.write("$ ")
                     sys.stdout.flush()
                     break
-            continue
-            if user_input[5:] in builtins:
+            if found = true:
+                continue
+            elif user_input[5:] in builtins:
                 print(f"{user_input[5:]} is a shell builtin")
             else:
                 print(f"{user_input[5:]} not found")
-        # else:
-        #     print(f"{user_input}: command not found")
+        else:
+            print(f"{user_input}: command not found")
         sys.stdout.write("$ ")
         sys.stdout.flush()
 
