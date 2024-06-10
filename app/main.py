@@ -15,7 +15,7 @@ def main():
         user_input=input()
         if user_input=="exit 0":
             break
-        if "echo" in user_input:
+        if user_input.startswith("echo"):
             print(user_input[5:])
         if user_input.startswith("type"):
             if user_input[5:] in builtins:
