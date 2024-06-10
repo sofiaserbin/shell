@@ -1,8 +1,11 @@
 import sys
+import os
 
 
 def main():
     builtins = ["echo", "type", "exit"]
+    PATH = os.environ.get("PATH")
+    paths = PATH.split(":")
     # You can use print statements as follows for debugging, they'll be visible when running tests.
     # print("Logs from your program will appear here!")
 
@@ -18,7 +21,10 @@ def main():
         elif user_input.startswith("echo"):
             print(user_input[5:])
         elif user_input.startswith("type"):
-            if user_input[5:] in builtins:
+            for path in paths:
+                if user_input[5:] in path:
+                    print(f"{user_input[5:]} is {path}")
+            elif user_input[5:] in builtins:
                 print(f"{user_input[5:]} is a shell builtin")
             else:
                 print(f"{user_input[5:]} not found")
