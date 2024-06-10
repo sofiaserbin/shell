@@ -31,8 +31,6 @@ def main():
                     sys.stdout.write("$ ")
                     sys.stdout.flush()
                     break
-            elif found == True:
-                continue
             else:
                 print(f"{user_input[5:]} not found")
         else:
