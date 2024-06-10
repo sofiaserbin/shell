@@ -24,6 +24,8 @@ def main():
             for path in paths:
                 if os.path.isfile(f"{path}/{user_input[5:]}"):
                     print(f"{user_input[5:]} is {path}/{user_input[5:]}")
+                    sys.stdout.write("$ ")
+                    sys.stdout.flush()
                     break
             continue
             if user_input[5:] in builtins:
