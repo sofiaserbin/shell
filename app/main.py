@@ -14,6 +14,8 @@ def main():
         user_input = input().strip()
         if user_input == "exit 0":
             break
+        elif user_input.startswith("pwd"):
+                print(os.getcwd())
         elif user_input.startswith("echo "):
             print(user_input[5:])
         elif user_input.startswith("type "):
