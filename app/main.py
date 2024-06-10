@@ -22,6 +22,8 @@ def main():
             print(user_input[5:])
         elif user_input.startswith("type"):
             found = False
+            if user_input[5:] in builtins:
+                print(f"{user_input[5:]} is a shell builtin")
             for path in paths:
                 if os.path.isfile(f"{path}/{user_input[5:]}"):
                     print(f"{user_input[5:]} is {path}/{user_input[5:]}")
@@ -29,10 +31,8 @@ def main():
                     sys.stdout.write("$ ")
                     sys.stdout.flush()
                     break
-            if found == True:
+            elif found == True:
                 continue
-            elif user_input[5:] in builtins:
-                print(f"{user_input[5:]} is a shell builtin")
             else:
                 print(f"{user_input[5:]} not found")
         else:
