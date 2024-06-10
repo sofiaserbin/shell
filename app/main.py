@@ -28,8 +28,6 @@ def main():
                 if os.path.isfile(f"{path}/{user_input[5:]}"):
                     print(f"{user_input[5:]} is {path}/{user_input[5:]}")
                     found = True
-                    sys.stdout.write("$ ")
-                    sys.stdout.flush()
                     break
             else:
                 print(f"{user_input[5:]} not found")
