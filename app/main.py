@@ -24,7 +24,8 @@ def main():
             for path in paths:
                 if user_input[5:] in path:
                     print(f"{user_input[5:]} is {path}")
-            elif user_input[5:] in builtins:
+                    break
+            if user_input[5:] in builtins:
                 print(f"{user_input[5:]} is a shell builtin")
             else:
                 print(f"{user_input[5:]} not found")
