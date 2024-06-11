@@ -16,7 +16,10 @@ def main():
             break
         elif user_input.startswith("cd"):
             try:
-                os.chdir(os.path.abspath(user_input[3:]))
+                if user_input[3:]=="~":
+                    os.chdir(os.environ.get("HOME"))
+                else:
+                    os.chdir(os.path.abspath(user_input[3:]))
             except FileNotFoundError:
                 print(f"cd: {user_input[3:]}: No such file or directory")
                 
