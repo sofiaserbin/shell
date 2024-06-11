@@ -1,9 +1,10 @@
 import sys
 import subprocess
 import os
+import time
 
 def main():
-    builtins = ["echo", "type", "exit", "cd", "pwd"]
+    builtins = ["echo", "type", "exit", "cd", "pwd", "date", "ls", "mkdir"]
     PATH = os.environ.get("PATH")
     paths = PATH.split(":") if PATH else []
 
@@ -14,6 +15,10 @@ def main():
         user_input = input().strip()
         if user_input == "exit 0":
             break
+        elif user_input.startswith("date"):
+            now = time.time()
+            date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(now))
+            print(date)
         elif user_input.startswith("cd"):
             try:
                 if user_input[3:]=="~":
@@ -37,7 +42,6 @@ def main():
                     executable_path = os.path.join(path, command_name)
                     if os.path.isfile(executable_path):
                         print(f"{command_name} is {executable_path}")
-                        # os.command(command_name)
                         found = True
                         break
                 if not found:
