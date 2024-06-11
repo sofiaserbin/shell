@@ -16,7 +16,7 @@ def main():
             break
         elif user_input.startswith("cd"):
             try:
-                os.chdir(user_input[3:])
+                os.chdir(os.path.abspath(user_input[3:]))
             except FileNotFoundError:
                 print(f"cd: {user_input[3:]}: No such file or directory")
                 
