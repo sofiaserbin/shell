@@ -3,7 +3,7 @@ import subprocess
 import os
 
 def main():
-    builtins = ["echo", "type", "exit"]
+    builtins = ["echo", "type", "exit", "cd", "pwd"]
     PATH = os.environ.get("PATH")
     paths = PATH.split(":") if PATH else []
 
@@ -42,6 +42,15 @@ def main():
                         break
                 if not found:
                     print(f"{command_name}: not found")
+        elif user_input.startswith("mkdir"):
+            dirs = user_input[6:].split(" ")
+            if len(dirs) == 1:
+                os.mkdir(dirs[0])
+            else:
+                for item in dirs:
+                    os.mkdir(item)
+        elif user_input.startswith("ls"):
+            print(os.listdir(os.getcwd()))
         else:
             cmd_parts = user_input.split()
             cmd = cmd_parts[0]
