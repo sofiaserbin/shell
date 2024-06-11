@@ -2,19 +2,45 @@ import sys
 import subprocess
 import os
 import time
+import shutil
 
 def main():
     builtins = ["echo", "type", "exit", "cd", "pwd", "date", "ls", "mkdir"]
     PATH = os.environ.get("PATH")
     paths = PATH.split(":") if PATH else []
 
-    sys.stdout.write("$ ")
+    sys.stdout.write(f"$ ")
     sys.stdout.flush()
 
     while True:
         user_input = input().strip()
         if user_input == "exit 0":
             break
+        elif user_input.startswith("rd"):
+            dirs = user_input[3:].split(" ")
+            if dirs[0] == "-r":
+                if len(dirs) == 2:
+                    try:
+                        shutil.rmtree(dirs[1])
+                    except FileNotFoundError:
+                        print(f"Directory {dirs[1]} not found")
+                else:
+                    for item in dirs[1:]:
+                        try:
+                            shutil.rmtree(item)
+                        except FileNotFoundError:
+                            print(f"Directory {item} not found")
+            if len(dirs) == 1:
+                try:
+                    os.rmdir(dirs[0])
+                except FileNotFoundError:
+                    print(f"Directory {dirs[0]} not found")
+            else:
+                for item in dirs:
+                    try:
+                        os.rmdir(item)
+                    except FileNotFoundError:
+                        print(f"Directory {item} not found")
         elif user_input.startswith("date"):
             now = time.time()
             date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(now))
