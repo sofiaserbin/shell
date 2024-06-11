@@ -14,6 +14,12 @@ def main():
         user_input = input().strip()
         if user_input == "exit 0":
             break
+        elif user_input.startswith("cd"):
+            try:
+                os.chdir(user_input[3:])
+            except FileNotFoundError:
+                print(f"cd: {user_input[3:]}: No such file or directory")
+                
         elif user_input.startswith("pwd"):
                 print(os.getcwd())
         elif user_input.startswith("echo "):
