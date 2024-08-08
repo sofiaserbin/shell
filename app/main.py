@@ -16,6 +16,29 @@ def main():
         user_input = input().strip()
         if user_input == "exit 0":
             break
+        elif user_input.startswith("grep"):
+            arguments = user_input[5:].split(" ")
+            file = open(arguments[1], "r")
+            content = file.read()
+            print(content)
+            file.close()
+            i = 0
+            if arguments[0][0] == "[":
+                    for char in arguments[0][1:-1]:
+                        for character in content:
+                            if char == character:
+                                i = i + 1
+                               
+                                
+                        
+            else:   
+                for char in content:
+                    if char == arguments[0]:
+                        i = i + 1
+                       
+                       
+            print(i)
+                        
         elif user_input.startswith("rd"):
             dirs = user_input[3:].split(" ")
             if dirs[0] == "-r":
@@ -52,8 +75,7 @@ def main():
                 else:
                     os.chdir(os.path.abspath(user_input[3:]))
             except FileNotFoundError:
-                print(f"cd: {user_input[3:]}: No such file or directory")
-                
+                print(f"cd: {user_input[3:]}: No such file or directory")              
         elif user_input.startswith("pwd"):
                 print(os.getcwd())
         elif user_input.startswith("echo "):
